@@ -7,11 +7,10 @@
   <meta name="description" content="推しキャラのプロフィールが簡単に作れる♡カラー変更機能つきの可愛いプロフィールメーカー。画像保存＆SNSシェア対応！">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
   
-  <!-- OGP（SNS共通） -->
+  <!-- OGP -->
   <meta property="og:title" content="推しプロフィールメーカー2♡">
   <meta property="og:description" content="推し色に染められる！あなたの推しをかわいく紹介しちゃおう♡">
   <meta property="og:type" content="website">
-  <!-- ↓ URLを maker2 に変更したよ！ -->
   <meta property="og:url" content="https://mofu-mitsu.github.io/oshi-profile-maker2/">
   <meta property="og:image" content="https://mofu-mitsu.github.io/oshi-profile-maker2/ogp.png">
   <meta name="twitter:card" content="summary_large_image">
@@ -36,7 +35,7 @@
       padding: 0;
       padding-bottom: 150px;
       background-color: var(--bg-color);
-      /* 背景にドット柄（色はCSS変数で変わるよ！） */
+      /* 背景にドット柄 */
       background-image: 
         radial-gradient(var(--theme-color) 20%, transparent 20%),
         radial-gradient(var(--theme-color) 20%, transparent 20%);
@@ -48,7 +47,6 @@
       transition: background-image 0.3s;
     }
 
-    /* 背景を少し白く透かして文字を見やすく */
     body::after {
       content: "";
       position: fixed;
@@ -57,26 +55,53 @@
       z-index: -1;
     }
 
-    /* タイトル装飾 */
+    /* タイトル装飾（可愛く強調！） */
     h1 {
       text-align: center;
       color: var(--theme-color);
       font-family: 'Kiwi Maru', serif;
-      margin-top: 30px;
+      margin-top: 40px;
+      margin-bottom: 20px;
       font-size: 1.6rem;
       
-      /* ステッチ風の枠線 */
+      /* ポップなステッチ風枠線 */
       background: #fff;
       display: inline-block;
-      padding: 15px 30px;
+      padding: 15px 40px;
       border-radius: 50px;
-      border: 3px dashed var(--theme-color);
-      box-shadow: 0 4px 0 rgba(0,0,0,0.1);
+      border: 4px dotted var(--theme-color);
+      box-shadow: 0 6px 0 rgba(0,0,0,0.1);
+      
       position: relative;
       left: 50%;
       transform: translateX(-50%);
       max-width: 90%;
       white-space: nowrap;
+    }
+
+    /* 吹き出しのしっぽ */
+    h1::after {
+      content: '';
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      border-top: 15px solid var(--theme-color);
+      border-left: 15px solid transparent;
+      border-right: 15px solid transparent;
+    }
+    
+    /* 中の白抜きしっぽ */
+    h1::before {
+      content: '';
+      position: absolute;
+      bottom: -9px;
+      left: 50%;
+      transform: translateX(-50%);
+      border-top: 15px solid #fff;
+      border-left: 15px solid transparent;
+      border-right: 15px solid transparent;
+      z-index: 1;
     }
 
     .container {
@@ -89,7 +114,7 @@
     /* カラーピッカーエリア */
     .color-setting {
       background: #fff;
-      padding: 15px;
+      padding: 15px 25px;
       border-radius: 50px;
       box-shadow: 0 4px 10px rgba(0,0,0,0.05);
       text-align: center;
@@ -97,7 +122,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 10px;
+      gap: 15px;
       border: 2px solid #fff;
       width: fit-content;
       margin-left: auto;
@@ -131,17 +156,16 @@
       border-radius: 20px;
       padding: 40px 30px;
       box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-      border: 3px solid var(--theme-color); /* 枠線をテーマカラーに */
+      border: 3px solid var(--theme-color);
       position: relative;
       margin-bottom: 30px;
-      /* 方眼紙っぽい柄 */
       background-image: 
         linear-gradient(to right, rgba(0,0,0,0.03) 1px, transparent 1px),
         linear-gradient(to bottom, rgba(0,0,0,0.03) 1px, transparent 1px);
       background-size: 20px 20px;
     }
 
-    /* 上部の装飾（バインダー風） */
+    /* 上部の装飾 */
     .profile-card::before {
       content: "♥ PROFIL ♥";
       position: absolute;
@@ -226,7 +250,6 @@
       gap: 8px;
     }
 
-    /* 手書きノート風の入力欄 */
     input[type="text"],
     input[type="url"],
     textarea,
@@ -234,7 +257,7 @@
       width: 100%;
       padding: 8px 5px;
       border: none;
-      border-bottom: 2px dashed #ccc; /* 点線の下線 */
+      border-bottom: 2px dashed #ccc;
       border-radius: 0;
       box-sizing: border-box;
       font-size: 1rem;
@@ -249,13 +272,12 @@
     textarea:focus,
     .sukiTextDisplay:focus {
       outline: none;
-      border-bottom: 2px solid var(--theme-color); /* フォーカス時は実線＆推し色 */
+      border-bottom: 2px solid var(--theme-color);
     }
 
-    /* 「ここが好き」などのエリア */
     .sukiTextDisplay {
       min-height: 80px;
-      border: 2px solid #eee; /* ここだけ囲み枠 */
+      border: 2px solid #eee;
       border-radius: 10px;
       padding: 10px;
       background: rgba(255,255,255,0.8);
@@ -266,7 +288,6 @@
       border-color: var(--theme-color);
     }
 
-    /* プレースホルダーの色 */
     ::placeholder {
       color: #ccc;
       font-size: 0.9rem;
@@ -304,27 +325,6 @@
       border: 2px solid var(--theme-color);
     }
 
-    /* ローディングアニメーション */
-    .loader {
-      border: 5px solid #f3f3f3;
-      border-top: 5px solid var(--theme-color);
-      border-radius: 50%;
-      width: 40px;
-      height: 40px;
-      animation: spin 1s linear infinite;
-      margin: 0 auto;
-    }
-    @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-
-    /* 犬猫画像 */
-    .animal {
-      position: fixed;
-      width: 70px;
-      z-index: 100;
-      pointer-events: none;
-      transition: bottom 0.4s ease;
-    }
-
     /* フッター */
     .ad-footer {
       text-align: center;
@@ -359,8 +359,7 @@
     @media screen and (max-width: 600px) {
       .container { width: 95%; margin-top: 10px;}
       .profile-card { padding: 30px 20px; }
-      .animal { width: 50px; }
-      h1 { font-size: 1.4rem; padding: 12px 20px; }
+      h1 { font-size: 1.3rem; padding: 12px 25px; }
     }
 
   </style>
@@ -400,7 +399,7 @@
         </div>
         <div class="input-row">
           <label><i class="fa-solid fa-star"></i> あだ名</label>
-          <input type="text" placeholder="呼び方など">
+          <input type="text" placeholder="呼び方などを入力">
         </div>
         <div class="input-row">
           <label><i class="fa-solid fa-comment-dots"></i> 一言</label>
@@ -442,13 +441,13 @@
       <button onclick="toggleHowTo()"><i class="fa-solid fa-circle-question"></i> 使い方</button>
     </div>
 
-    <!-- シェアオプション -->
+    <!-- シェアオプション（シンプルに変更！） -->
     <div class="share-options" id="shareOptions" style="display: none;">
-      <p style="font-weight:bold; color:var(--theme-color);">＼ シェアしてね♡ ／</p>
-      <button onclick="shareTo('line')"><i class="fa-brands fa-line"></i> LINE</button>
-      <button onclick="shareTo('x')"><i class="fa-brands fa-x-twitter"></i> X</button>
-      <button onclick="nativeShare()"><i class="fa-solid fa-arrow-up-from-bracket"></i> 共有</button>
-      <button onclick="saveAsImage()"><i class="fa-solid fa-download"></i> 画像保存</button>
+      <p style="font-weight:bold; color:var(--theme-color);">＼ 完成！ ／</p>
+      <div style="display:flex; justify-content:center; flex-wrap:wrap;">
+        <button onclick="nativeShare()"><i class="fa-solid fa-arrow-up-from-bracket"></i> 共有</button>
+        <button onclick="saveAsImage()"><i class="fa-solid fa-download"></i> 画像保存</button>
+      </div>
       <div id="imagePreviewContainer"></div>
     </div>
 
@@ -458,17 +457,15 @@
       <p>1. 上のカラーピッカーで「推しの色」を選んでね！</p>
       <p>2. 画像をタップして推しの写真をアップロード！</p>
       <p>3. プロフィールを入力してね。「ここが好き」は改行もできるよ。</p>
-      <p>4. 「完成してシェア」で画像を保存したりSNSに投稿できるよ！</p>
+      <p>4. 「完成してシェア」で画像を保存したりURLを共有できるよ！</p>
     </div>
 
   </div>
-
 
   <!-- フッター広告エリア -->
   <footer class="ad-footer">
     <p style="color:var(--theme-color); font-weight:bold; margin-bottom:10px;">♡ 推し活におすすめグッズ ♡</p>
     <div class="ad-banner" style="display:flex; justify-content:center; gap:10px; flex-wrap:wrap;">
-      <!-- 楽天アフィリエイトリンク -->
       <a href="https://hb.afl.rakuten.co.jp/ichiba/47cc762a.4f5bdc03.47cc762b.b1296f7f/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Ftiarise%2Faiaigasa-key%2F" target="_blank" rel="nofollow sponsored noopener"><img src="https://hbb.afl.rakuten.co.jp/hgb/47cc762a.4f5bdc03.47cc762b.b1296f7f/?me_id=1337621&item_id=10000469&pc=https%3A%2F%2Fthumbnail.image.rakuten.co.jp%2F%400_mall%2Ftiarise%2Fcabinet%2Fproducts01%2Fkeyholder%2Fitem1_iuk.jpg%3F_ex%3D80x80&s=80x80&t=pict"></a>
       <a href="https://hb.afl.rakuten.co.jp/ichiba/47cd1bba.09c028b2.47cd1bbc.e3d2cf97/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fsaku-saku-shop%2Fbag-rrd001%2F" target="_blank" rel="nofollow sponsored noopener"><img src="https://hbb.afl.rakuten.co.jp/hgb/47cd1bba.09c028b2.47cd1bbc.e3d2cf97/?me_id=1281585&item_id=10001273&pc=https%3A%2F%2Fthumbnail.image.rakuten.co.jp%2F%400_mall%2Fsaku-saku-shop%2Fcabinet%2Fmado_normal%2Frrd001-mado.jpg%3F_ex%3D80x80&s=80x80&t=pict"></a>
     </div>
@@ -482,7 +479,6 @@
   <!-- スクリプト -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
   <script>
-    // URLを新バージョンに変更
     const oshiMakerUrl = 'https://mofu-mitsu.github.io/oshi-profile-maker2/';
 
     // ★カラー変更機能
@@ -547,7 +543,7 @@
       document.getElementById("shareOptions").scrollIntoView({behavior: "smooth"});
     }
 
-    // 画像保存処理（統合版）
+    // 画像保存処理
     function saveAsImage() {
       const element = document.getElementById('profileDisplayArea');
       const btn = event.currentTarget;
@@ -576,45 +572,6 @@
           previewContainer.appendChild(note);
         }
         btn.innerHTML = originalText;
-      });
-    }
-
-    // シェア機能（Imgurアップロード含む）
-    function shareTo(platform) {
-      const element = document.getElementById('profileDisplayArea');
-      const previewContainer = document.getElementById('imagePreviewContainer');
-      previewContainer.innerHTML = '<div class="loader"></div><p>画像を準備中...</p>';
-
-      html2canvas(element, { scale: 2, backgroundColor: null, useCORS: true }).then(canvas => {
-        const dataURL = canvas.toDataURL('image/png');
-        const base64Image = dataURL.split(',')[1];
-
-        fetch('https://api.imgur.com/3/image', {
-          method: 'POST',
-          headers: {
-            Authorization: 'Client-ID bb8064419b2b7be', 
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({ image: base64Image, type: 'base64' })
-        })
-        .then(response => response.json())
-        .then(data => {
-          if(data.success) {
-            const imageUrl = data.data.link;
-            const text = encodeURIComponent('私の推しを見て！ #推しプロフィールメーカー');
-            const url = encodeURIComponent(oshiMakerUrl);
-            
-            if (platform === 'line') {
-              window.open(`https://line.me/R/msg/text/?${text}%0A${url}%0A${imageUrl}`, '_blank');
-            } else if (platform === 'x') {
-              window.open(`https://twitter.com/intent/tweet?text=${text}&url=${imageUrl}%0A${url}`, '_blank');
-            }
-            previewContainer.innerHTML = '';
-          } else {
-            alert('画像のアップロードに失敗しました💦');
-            previewContainer.innerHTML = '';
-          }
-        });
       });
     }
 
